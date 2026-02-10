@@ -1,10 +1,15 @@
 package com.example.airBnBClone.entities;
 
 import com.example.airBnBClone.entities.enums.PaymentStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+
+@Entity
+@Getter
+@Setter
 public class Payment extends BaseTableModel {
 
     @Id
@@ -15,8 +20,9 @@ public class Payment extends BaseTableModel {
     private String paymentId;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private Double amount;
+    private BigDecimal amount;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PaymentStatus status;
 

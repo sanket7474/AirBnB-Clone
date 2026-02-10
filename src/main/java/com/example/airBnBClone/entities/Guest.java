@@ -1,5 +1,6 @@
 package com.example.airBnBClone.entities;
 
+import com.example.airBnBClone.entities.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class Guest extends BaseTableModel {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
-    private Getter gender;
+    private Gender gender;
 
     private Integer age;
 }
