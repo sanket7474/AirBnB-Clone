@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
@@ -23,7 +25,7 @@ public class Room extends BaseTableModel {
     private String roomType;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private Double basePrice;
+    private BigDecimal basePrice;
 
     @Column(columnDefinition = "TEXT[]")
     private String[] photos;

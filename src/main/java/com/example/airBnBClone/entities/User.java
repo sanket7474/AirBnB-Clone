@@ -1,6 +1,6 @@
 package com.example.airBnBClone.entities;
 
-import com.example.airBnBClone.entities.enums.Role;
+import com.example.airBnBClone.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
