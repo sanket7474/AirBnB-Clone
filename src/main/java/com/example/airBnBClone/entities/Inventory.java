@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -34,10 +35,10 @@ public class Inventory extends BaseTableModel{
     private Integer totalCount;
 
     @Column(nullable = false, precision = 5, scale = 2)
-    private Double surgeFactor;
+    private BigDecimal surgeFactor;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private Double price;
+    private BigDecimal price;
 
     @Column(nullable = false)
     private String city;

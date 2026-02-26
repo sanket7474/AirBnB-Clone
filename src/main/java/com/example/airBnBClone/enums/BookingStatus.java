@@ -1,4 +1,4 @@
-package com.example.airBnBClone.entities.enums;
+package com.example.airBnBClone.enums;
 
 public enum BookingStatus {
 
