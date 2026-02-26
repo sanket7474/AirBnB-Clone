@@ -26,7 +26,7 @@ public class HotelServiceImpl implements HotelService {
         hotel.setActive(false);
         hotel = hotelRepository.save(hotel);
 
-        log.info("Hotel created with ID: {}", hotelDTO.getId());
+        log.info("Hotel created with ID: {}", hotel.getId());
 
         return modelMapper.map(hotel, HotelDTO.class);
     }

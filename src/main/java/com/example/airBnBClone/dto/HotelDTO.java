@@ -1,8 +1,6 @@
 package com.example.airBnBClone.dto;
 
 import com.example.airBnBClone.entities.HotelContactInfo;
-import com.example.airBnBClone.entities.Room;
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -16,6 +14,6 @@ public class HotelDTO {
     private String[] photos;
     private String[] amenities;
     private HotelContactInfo contactInfo;
-    private List<Room> rooms;
+    private List<RoomDTO> rooms;
     private boolean active;
 }
