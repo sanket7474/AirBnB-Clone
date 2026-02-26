@@ -37,4 +37,10 @@ public class Hotel extends BaseTableModel{
     // in the Room entity is the foreign key that references the Hotel entity.
     @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
     private List<Room> rooms;
+
+    @Column(nullable = false)
+    private boolean active;
+
+    @ManyToOne
+    private User owner;
 }
