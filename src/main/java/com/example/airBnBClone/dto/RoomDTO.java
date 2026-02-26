@@ -1,7 +1,6 @@
 package com.example.airBnBClone.dto;
 
 import com.example.airBnBClone.entities.Hotel;
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
