@@ -9,4 +9,6 @@ public interface HotelService {
     public HotelDTO getHotelById(Long id);
 
     public HotelDTO updateHotel(Long id, HotelDTO hotel);
+
+    public void activateHotel(Long id);
 }

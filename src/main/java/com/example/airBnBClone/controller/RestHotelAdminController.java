@@ -29,7 +29,7 @@ public class RestHotelAdminController {
         log.info("Received request to fetch hotel with ID: {}", hotelId);
         HotelDTO hotelDTO = hotelService.getHotelById(hotelId);
         log.info("Hotel fetched successfully: {}", hotelDTO.getName());
-        return new ResponseEntity<>(hotelDTO, HttpStatus.OK);
+        return ResponseEntity.ok(hotelDTO);
     }
 
     @PutMapping("/{hotelId}")
@@ -40,5 +40,12 @@ public class RestHotelAdminController {
         return new ResponseEntity<>(updatedHotel, HttpStatus.OK);
     }
 
+    @PatchMapping("/{hotelId}/activate")
+    public ResponseEntity<Void> activateHotel(@PathVariable Long hotelId) {
+        log.info("Received request to activate hotel with ID: {}", hotelId);
+        hotelService.activateHotel(hotelId);
+        log.info("Hotel activated successfully");
+        return ResponseEntity.noContent().build();
+    }
 
 }
