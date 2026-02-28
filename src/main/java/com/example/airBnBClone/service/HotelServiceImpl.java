@@ -73,6 +73,11 @@ public class HotelServiceImpl implements HotelService {
                         .findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Hotel not found with ID: " + id));
 
+        if(hotel.isActive()) {
+            log.warn("Hotel with ID: {} is already active", id);
+            return;
+        }
+
         hotel.setActive(true);
 
         for(Room room : hotel.getRooms()) {

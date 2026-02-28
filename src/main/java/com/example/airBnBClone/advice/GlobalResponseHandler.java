@@ -31,7 +31,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
 
         boolean isAllowedEndpoint = allowedEndpoints.stream().anyMatch(endpoint -> request.getURI().getPath().startsWith(endpoint));
 
-        if(isAllowedEndpoint) {
+        if(body instanceof APIResponse || isAllowedEndpoint) {
             return body;
         }
 
