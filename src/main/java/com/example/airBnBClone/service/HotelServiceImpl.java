@@ -2,12 +2,14 @@ package com.example.airBnBClone.service;
 
 import com.example.airBnBClone.dto.HotelDTO;
 import com.example.airBnBClone.entities.Hotel;
+import com.example.airBnBClone.entities.Room;
 import com.example.airBnBClone.exception.ResourceNotFoundException;
 import com.example.airBnBClone.repository.HotelRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -16,6 +18,7 @@ public class HotelServiceImpl implements HotelService {
 
     private final HotelRepository hotelRepository;
     private final ModelMapper modelMapper;
+    private final InventoryService inventoryService;
 
     @Override
     public HotelDTO createNewHotel(HotelDTO hotelDTO) {
@@ -53,10 +56,29 @@ public class HotelServiceImpl implements HotelService {
                         .orElseThrow(() -> new ResourceNotFoundException("Hotel not found with ID: " + id));
 
          modelMapper.map(hotel, existingHotel);
+
         existingHotel.setId(id);
         existingHotel = hotelRepository.save(existingHotel);
         log.info("Hotel updated successfully: {}", existingHotel.getName());
 
         return modelMapper.map(existingHotel, HotelDTO.class);
     }
+
+    @Transactional
+    public void activateHotel(Long id) {
+
+        log.info("Activating hotel with ID: {}", id);
+
+        Hotel hotel = hotelRepository
+                        .findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Hotel not found with ID: " + id));
+
+        hotel.setActive(true);
+
+        for(Room room : hotel.getRooms()) {
+            inventoryService.initializeInventoryForRoom(room);
+        }
+
+        log.info("Hotel activated successfully: {}", hotel.getName());
+     }
 }
