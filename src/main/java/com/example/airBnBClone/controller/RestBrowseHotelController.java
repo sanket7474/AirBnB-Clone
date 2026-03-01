@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class RestBrowseHotelController {
 
     private final InventoryService inventoryService;
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<Page<HotelDTO>> searchHotels(@RequestBody HotelSearchRequest searchRequest) {
         log.info("Received search request: {}", searchRequest);
         Page<HotelDTO> page =  inventoryService.searchHotels(searchRequest);
