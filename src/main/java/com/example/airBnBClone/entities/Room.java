@@ -34,9 +34,11 @@ public class Room extends BaseTableModel {
     @Column(columnDefinition = "TEXT[]")
     private String[] amenities;
 
+    // This field represents the total number of rooms of this type available in the hotel
     @Column(nullable = false)
     private int totalCount;
 
+    // This field represents the maximum occupancy of the room (e.g., 2 for a double room)
     @Column(nullable = false)
     private int capacity;
 
