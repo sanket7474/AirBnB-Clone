@@ -26,5 +26,8 @@ public class Payment extends BaseTableModel {
     @Column(nullable = false)
     private PaymentStatus status;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    private Booking booking;
+
 
 }

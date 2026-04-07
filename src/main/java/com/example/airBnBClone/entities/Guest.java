@@ -2,12 +2,14 @@ package com.example.airBnBClone.entities;
 
 import com.example.airBnBClone.enums.Gender;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Builder
 public class Guest extends BaseTableModel {
 
 
