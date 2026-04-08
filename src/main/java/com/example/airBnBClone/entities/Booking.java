@@ -42,9 +42,9 @@ public class Booking extends BaseTableModel {
     private int roomCount;
 
     @Column(nullable = false)
-    private LocalDate checkInDate;
+    private LocalDateTime checkInDate;
     @Column(nullable = false)
-    private LocalDate checkOutDate;
+    private LocalDateTime checkOutDate;
 
     @Enumerated(EnumType.STRING)
     private BookingStatus status;

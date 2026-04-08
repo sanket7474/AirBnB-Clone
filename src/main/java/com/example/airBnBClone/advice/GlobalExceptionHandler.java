@@ -1,6 +1,7 @@
 package com.example.airBnBClone.advice;
 
 import com.example.airBnBClone.exception.ResourceNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 @RestControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<APIResponse<?>> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        log.error("Unexpected error occurred", ex);
         ApiError apiError = ApiError.builder()
                 .status(HttpStatus.NOT_FOUND.value())
                 .message(ex.getMessage())
@@ -30,6 +33,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<APIResponse<?>> handleGenericException(Exception ex) {
+
+        log.error("Unexpected error occurred", ex);
+
         ApiError apiError = ApiError.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .message("An unexpected error occurred")
